@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <hello>
+      <div slot="brand">lm</div>
+      <div slot="age">25</div>
+  </hello>
+
+</div>
+<script src="vue2.0.js"></script>
+<!--slot 插槽-->
+<!--没有名字的slot  具有名字的slot-->
+<template id="hello">
+    <div>hello <slot name="age"></slot><slot name="brand"></slot></div>
+</template>
+
+<script>
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            comp:'hello'
+        },
+        components:{
+            hello:{
+                template:'#hello'
+            },
+
+        }
+    })
+</script>
+</body>
+</html>

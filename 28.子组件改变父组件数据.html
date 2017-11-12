@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <parent>
+    </parent>
+</div>
+<template id="tmpl">
+   <div>
+       <div>parent</div>{{name}}
+       <child :n="name"></child>
+   </div>
+</template>
+<script src="vue2.0.js"></script>
+<script>
+    //parent  child
+    var vm = new Vue({
+        el: '#app',
+        components: {
+            parent: {
+                template:'#tmpl ',
+                data(){
+                  return {name:{name:'beijing'}}
+                },
+                components:{
+                    child: {
+                        template: '<div @click="update">child {{n.name}}</div>',
+                        methods:{
+                            //在vue2.0中。子组件是不能更改父组件数据的
+                          update(){
+                              this.n.name='lm'
+                          }
+                        },
+                        props:{n:Object}
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

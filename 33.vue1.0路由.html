@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <a href="#/home"></a>
+    <a v-link="{path:'/home'}">首页</a>
+    <a v-link="{path:'/list'}">列表页</a>
+    <router-view></router-view>
+</div>
+<script src="vue1.0.js"></script>
+<script src="vue-router.js"></script>
+<style>
+    .v-link-active {
+        background: red;
+    }
+</style>
+<template id="home">
+    <h1>home</h1>
+    <a v-link="{path:'/home/login'}">登录</a>
+    <a v-link="{path:'/home/reg'}">注册</a>
+    <router-view></router-view>
+</template>
+<template id="list">
+    <h1>list</h1>
+    <a v-link="{path:'/list/news/1'}">消息1</a>
+    <a v-link="{path:'/list/news/2'}">消息2</a>
+    <router-view></router-view>
+</template>
+<script>
+    var App = {};
+    var router = new VueRouter;
+    router.map({
+        '/home': {
+            component: {
+                template: '#home'
+            },
+            //子集路由
+            subRouters: {
+                '/reg': {
+                    component: {
+                        template: '注册'
+                    }
+                },
+                '/login': {
+                    component: {
+                        template: '登录'
+                    }
+                }
+            },
+        },
+        '/list': {
+            component: {
+                template: '#list'
+            },
+            subRouters: {
+                '/news/:id': {
+                    component: {
+                        template: '<div>消息{{$route.params.id}}  {{$route.query}}  {{$route.path}}</div>',
+                        data(transition){
+                            console.log(this.$route.params.id);
+                            console.log(this.$route.path);
+                            console.log(this.$route.query);
+                        }
+                    }
+                }
+            }
+        },
+    });
+    router.start(App, '#app');
+    //增加404跳转
+    router.redirect({
+        '/': 'home'
+    })
+
+
+</script>
+</body>
+</html>

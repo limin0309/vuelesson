@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--{{msg| capitalize}}-->
+    <!--{{Date.now()|date "aaa" "bbb"}}--><!--vue 1.0 这样写-->
+    {{Date.now()|date ("aaa","bbb")}}<!--vue2.0这样写-->
+</div>
+<!--<script src="vue1.0.js"></script>-->
+<script src="vue2.0.js"></script>
+<script>
+    //在2.0中所有的内置过滤器都没有了
+    //2.0推荐我们自己写过滤器
+    //param1过滤的内容 param2 "aaa" params "bbb"
+    Vue.filter('date',function (input,param1,param2) {
+        var d=new Date(input);
+        console.log(param1,param2);
+        return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()} ${d.getHours()}时${d.getMinutes()}分${d.getSeconds()}秒`
+    });
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            msg:'hello'
+        }
+    })
+</script>
+</body>
+</html>

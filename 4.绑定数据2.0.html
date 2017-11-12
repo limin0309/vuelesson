@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--要重复使用谁 就在谁的身上写v-for-->
+    <ul>
+        <!--在2.0中没有生命过的$index不能再使用了 说明 track-by也被废弃掉了-->
+        <!--
+        arr.forEach(function(item,index){
+
+        })
+        在2.0中，是item，index    在1.0中是index val 顺序不一样
+        -->
+        <li v-for="(val,index) in arr" track-by="$index">
+            {{val}}    {{index}}
+        </li>
+    </ul>
+</div>
+<script src="vue2.0.js" ></script>
+<!--<script src="vue1.0.js" ></script>-->
+<script>
+    //绑定数组
+    new Vue({
+        el:'#app',
+        data:{
+            arr:['iphone','iphone7','iphone'],
+        }
+    })
+</script>
+</body>
+</html>

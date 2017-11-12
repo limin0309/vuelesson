@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<hello></hello>
+    <hello1></hello1>
+</div>
+<script src="vue2.0.js"></script>
+<template id="hello">
+    <div>hello
+    <button @click="send">传递数据</button></div>
+</template>
+<template id="hello1">
+    <div>hello1{{msg}}</div>
+</template>
+<script>
+    //事件
+    var Event=new Vue;//event.$on  event.$emit
+    var vm=new Vue({
+        el:'#app',
+        components:{
+            hello:{
+                template:'#hello',
+                data(){
+                  return {msg:'我很饿'}
+                },
+                methods:{
+                    send(){
+                        Event.$emit('吃饭了',this.msg)
+                    }
+                }
+            },
+            hello1:{
+                mounted(){
+                  Event.$on('吃饭了',(data)=>{
+                    this.msg=data;
+                  })
+                },
+                data(){
+                  return {msg:''}
+                },
+                template:'#hello1'
+            },
+
+        }
+    })
+</script>
+</body>
+</html>

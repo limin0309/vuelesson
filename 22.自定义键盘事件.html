@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" @keydown.f1="up">
+</div>
+<!--<script src="vue1.0.js"></script>-->
+<script src="vue2.0.js"></script>
+<script>
+    //扩展我们的键盘事件
+    //1.0
+    //    Vue.directive('on').keyCodes.f1=112;/*1.0写法*/
+    //2.0
+    Vue.config.keyCodes.f1 = 112;
+    /*2.0写法*/
+    var vm = new Vue({
+        el: '#app',
+        methods: {
+            up: function () {
+                alert('ok');
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--要重复使用谁 就在谁的身上写v-for-->
+    <ul>
+        <!--a 变量 代表的是arr的某一个-->
+        <!--<li v-for="a in arr" track-by="$index"> &lt;!&ndash;在数组数据有相应的时候，在1.0中需要加入track-by='$index' 强制根据索引来遍历数据。在2.0不会出现问题&ndash;&gt;-->
+        <li v-for="(index,val) in arr" track-by="$index"> <!--在数组数据有相应的时候，在1.0中需要加入track-by='$index' 强制根据索引来遍历数据。在2.0不会出现问题-->
+            {{val}}   {{$index}} {{index}} <!--在2.0直接这样写会出警告，没有定义index。在1.0时可以运行-->
+        </li>
+    </ul>
+    <!--遍历数组时 需要加track-by=$index-->
+</div>
+<!--<script src="vue2.0.js" ></script>-->
+<script src="vue1.0.js" ></script>
+<script>
+    //绑定数组
+    new Vue({
+        el:'#app',
+        data:{
+            arr:['iphone','iphone7','iphone'],
+        }
+    })
+</script>
+</body>
+</html>

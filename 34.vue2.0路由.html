@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .router-link-active {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <route-link to="/home">首页</route-link>
+    <router-link to="/list">列表页</router-link>
+    <router-view></router-view>
+</div>
+<script src="vue2.0.js"></script>
+<script src="vue-router.js"></script>
+<script>
+    var Home = {
+        template: `'<div>
+<h1>首页</h1>
+   <route-link to="/home/login">首页</route-link>
+   <route-link to="/home/reg">注册</route-link>
+       <router-view></router-view>
+</div>'`
+    }
+
+    var List = {
+        template: `<div><h1>列表</h1>
+       <route-link to="/list/news/1">消息1</route-link>
+    <router-link to="/list/news/2">消息2</router-link>
+    <router-view></router-view>
+    </div>`
+    }
+    var router = new VueRouter({
+        routes: [
+            {
+                path: "/home", component: Home,
+                children: [
+                    {
+                        path: 'login', component: {
+                        template: '<div>登录</div>'
+                    }
+                    },
+                    {
+                        path: 'reg', component: {
+                        template: '<div>注册</div>'
+                    }
+                    }
+                ]
+            },
+            {path: "/list", component: List,
+            children:[
+                {path:'news/:nid',component:{
+                    template:'<div>消息是{{$route.params.nid}}</div>'
+                },
+                    beforeEnter(to,form,next){
+                        console.log(to.params.nid);
+                        next();
+                    }
+                }
+            ]},
+
+            {path: "*", component: Home},
+
+        ]
+    })
+    var vm = new Vue({
+        el: "#app",
+    })
+</script>
+</body>
+</html>

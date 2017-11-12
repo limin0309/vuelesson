@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--v-model v-html v-on简写成@-->
+    <!--<button v-on:click="fn($event)">增加手机</button>-->
+    <button @mousedown="fn($event)">增加手机</button>
+    <ul>
+        <li v-for="iphone in iphoneArr">
+            {{iphone}}
+        </li>
+    </ul>
+</div>
+<script src="vue2.0.js"></script>
+<!--<script src="vue1.0.js"></script>-->
+<script>
+    //fn后面加括号 一般用于传递参数，如果传递参数要手动增加e
+    // iphone5 iphone6 iphone7
+    var vm=new Vue({
+        el:'#app',
+        data:{
+          iphoneArr:['iphone5','iphone6','iphone7'],
+        },
+        methods:{
+            fn(e){
+//                alert(1);
+//                console.log(e);
+
+//                console.log(this);
+            console.log(this.iphoneArr);
+            //所有方法中的this指向的都是实例
+            this.iphoneArr.push('iphone8');
+            }
+        }
+    })
+    //所有的数据都会挂载在实例上
+    console.log(vm.iphoneArr);
+</script>
+</body>
+</html>

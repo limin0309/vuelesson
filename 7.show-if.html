@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--真的消失 样式上的消失-->
+    <!--v-show 如果为false 则display：none    如果频繁切换显示或者隐藏 我们就使用v-show-->
+    <!--v-if 如为false 则removeChild   如果不频繁切换就,判断数据是否 使用v-if-->
+    <!--<div v-show="flag">是否为true  为true显示  否则消失 </div>-->
+    <div v-if="flag">是否为true  为true显示  否则消失 </div>
+
+<div v-if="obj">
+    {{obj.name}}
+</div>
+</div>
+    <script src="vue2.0.js"></script>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                flag:false,
+//                obj:undefined
+                obj:{name:1}
+            }
+        })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--双向数据绑定 需要一个指令 所有的表单元素 都需要增加v-model属性-->
+    <input type="text" v-model="msg">
+    <!--表达式 支持赋值 三元表达式 运算 不支持逻辑if else-->
+    <!--{{msg}} {{age}}-->
+    {{msg=='hello'?200:msg}} {{age=100}} {{1+3+2}}
+    <!--绑定一次 2.0的写法-->
+    <div v-once>{{msg}}</div>
+    <!--如果绑定的数据是 html-->
+    <div v-html="msg"></div>
+
+    <!--1.0版本 绑定一次-->
+    <!--{{*msg}}-->
+
+</div>
+<!--双向数据绑定 必须满足视图可以更改，表单元素 input-->
+<!--绑定一次-->
+
+<script src="vue2.0.js"></script>
+<script>
+new Vue({
+    el:'#app',
+    data:{
+//        msg:'hello',
+//        age:'0'
+        msg:'<h1>html</h1>'
+    }
+})
+</script>
+</body>
+</html>
